@@ -19,7 +19,7 @@ using namespace std::chrono_literals;
 using namespace std;
 
 //Create space index arry
-int space_Index[128][192][128];
+int space_Index[192][128][128];
 
 int main(int argc, char** argv) {
 	
@@ -231,9 +231,9 @@ int main(int argc, char** argv) {
 	//initialize the space index array x, y, z
 	for(int s_z = 0; s_z < 128; s_z++){
 	
-		for(int s_y = 0; s_y < 192; s_y++){
+		for(int s_x = 0; s_x < 192; s_x++){
 		
-			for(int s_x = 0; s_x < 128; s_x++){
+			for(int s_y = 0; s_y < 128; s_y++){
 			
 				space_Index[s_x][s_y][s_z] = 0;
 			}
@@ -258,7 +258,8 @@ int main(int argc, char** argv) {
 		p_v_match.push_back(point_voxel_Match(i, idx));
 		
 		//save the occupied voxel grid into space index array
-		space_Index[ijk0-1][ijk1-1][ijk2-1] = 1;
+		//space_Index[ijk0-1][ijk1-1][ijk2-1] = 1;
+		space_Index[ijk1][ijk0-1][ijk2] = 1;
 	}
 	
 	cout << "[Success] | Find out the occupied voxel grids..." << endl;
@@ -270,9 +271,9 @@ int main(int argc, char** argv) {
 	
 	for(int s_z = 0; s_z < 128; s_z++){
 	
-		for(int s_y = 0; s_y < 192; s_y++){
+		for(int s_x = 0; s_x < 192; s_x++){
 		
-			for(int s_x = 0; s_x < 128; s_x++){
+			for(int s_y = 0; s_y < 128; s_y++){
 			
 				if(space_Index[s_x][s_y][s_z] == 1){
 				
@@ -377,9 +378,9 @@ int main(int argc, char** argv) {
 	
 	for(int s_z = 0; s_z < 128; s_z++){
 	
-		for(int s_y = 0; s_y < 192; s_y++){
+		for(int s_x = 0; s_x < 192; s_x++){
 		
-			for(int s_x = 0; s_x < 128; s_x++){
+			for(int s_y = 0; s_y < 128; s_y++){
 			
 				txtContent.append(to_string(space_Index[s_x][s_y][s_z]));
 				//txtContent.append(" ");
